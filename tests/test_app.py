@@ -63,3 +63,11 @@ def test_search_and_api():
     assert c.get("/api/article/999").status_code == 404
     rnd = c.get("/api/random").get_json()
     assert 1 <= rnd["article"] <= 103
+
+
+def test_script_not_escaped():
+    # 引用コピーJSがHTMLエスケープされず、そのまま実行可能な形で配信されること
+    c = kenpo.app.test_client()
+    body = c.get("/").get_data(as_text=True)
+    assert "execCommand('copy')" in body
+    assert "&#39;" not in body.split("<script>")[1].split("</script>")[0]

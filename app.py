@@ -497,7 +497,7 @@ function copyQuote(id) {
 PAGE = """<!DOCTYPE html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ title }}</title><style>{{ css }}</style></head>
+<title>{{ title }}</title><style>{{ css|safe }}</style></head>
 <body><main>
 <h1>日本国憲法 引用ツール</h1>
 <nav>
@@ -511,7 +511,7 @@ PAGE = """<!DOCTYPE html>
 </form>
 {{ body|safe }}
 <footer>出典：e-Gov法令検索「日本国憲法（昭和二十一年憲法）」。法令の条文は著作権法第13条により著作権の対象外です。</footer>
-</main><script>{{ script }}</script></body></html>"""
+</main><script>{{ script|safe }}</script></body></html>"""
 
 
 def article_card(article, quote_id):
